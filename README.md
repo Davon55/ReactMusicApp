@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+This is a React Font-End application.
+The purpose of this application was to seach music and save a playlist of music.
+This applications uses the spotify API to search music.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
