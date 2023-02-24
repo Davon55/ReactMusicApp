@@ -10,6 +10,7 @@ import Spotify from '../../util/Spotify';
 class App extends React.Component {
   constructor(props){
     super(props);
+
   this.state = {
     searchResults: [],
   playListName: 'My PlayList',
@@ -35,7 +36,7 @@ this.search = this.search.bind(this);
    removeTrack(track){
      let tracks = this.state.playListTracks;
      tracks = tracks.filter(currentTrack => currentTrack.id !== track.id)
-       this.setState({playListTracks: tracks});
+     this.setState({playListTracks: tracks});
    }
  
    // updates the playlist name
@@ -45,12 +46,12 @@ this.search = this.search.bind(this);
    //Gets Uri from playListTracks and saves the uri to a users playlist
    savePlaylist(){
     const trackURIs = this.state.playListTracks.map(tracks => tracks.uri);
-    Spotify.savePlaylist().then(this.state.playListName, trackURIs).then(() => {
+    Spotify.savePlaylist(this.state.playListName, trackURIs).then(() => {
       this.setState({
         playListName: 'New Playlist',
         playListTracks: []
-      })
-    })
+      });
+    });
    }
    search(searchTerm){
     Spotify.search(searchTerm).then(searchResults => {
@@ -69,8 +70,7 @@ this.search = this.search.bind(this);
                              onAdd={this.addTrack}
                              />
              <Playlist playListName={this.state.playListName} 
-                       playListTracks={this.state.playListTracks} 
-                       onAdd={this.addTrack} 
+                       playListTracks={this.state.playListTracks}  
                        onSave={this.savePlaylist}
                        onRemove={this.removeTrack} 
                        onNameChange={this.updatePlaylistName}   />
